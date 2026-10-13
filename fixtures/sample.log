@@ -1,0 +1,14 @@
+# A small incident stream for regression tests
+2026-10-13T21:00:00Z INFO gateway server started
+2026-10-13T21:00:01Z INFO auth login accepted
+2026-10-13T21:00:02Z WARN auth login retry from client
+2026-10-13T21:00:03Z ERROR auth invalid token signature
+2026-10-13T21:00:04Z ERROR auth invalid token signature
+2026-10-13T21:00:05Z ERROR auth invalid token signature
+2026-10-13T21:00:06Z INFO api request completed
+2026-10-13T21:00:07Z WARN api slow response
+2026-10-13T21:00:08Z ERROR api upstream timeout
+2026-10-13T21:00:09Z ERROR api upstream timeout
+2026-10-13T21:00:10Z FATAL storage manifest unavailable
+this is not a valid event
+2026-10-13T21:00:11Z DEBUG worker heartbeat

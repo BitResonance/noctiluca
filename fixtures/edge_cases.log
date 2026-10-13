@@ -1,0 +1,12 @@
+# Whitespace, malformed records, tie ordering, and repeated failures.
+2026-10-13T10:00:00Z DEBUG beta started
+2026-10-13T10:00:01Z DEBUG alpha started
+2026-10-13T10:00:02Z ERROR beta disk missing
+2026-10-13T10:00:03Z FATAL beta disk missing
+2026-10-13T10:00:04Z ERROR alpha connection reset
+2026-10-13T10:00:05Z ERROR alpha connection reset
+2026-10-13T10:00:06Z ERROR alpha connection reset
+2026-10-13T10:00:07Z NOTICE alpha unknown level
+not-a-time INFO rogue timestamp rejected
+2026-10-13T10:00:08Z INFO zebra hello
+2026-10-13T10:00:09Z INFO gamma hello

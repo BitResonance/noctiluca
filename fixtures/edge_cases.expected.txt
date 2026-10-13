@@ -1,0 +1,19 @@
+NOCTILUCA / REPORT
+Events: 9
+Malformed: 2
+
+LEVEL COUNTS
+DEBUG=2
+INFO=2
+WARN=0
+ERROR=4
+FATAL=1
+
+SERVICE COUNTS
+alpha=4
+beta=3
+gamma=1
+zebra=1
+
+REPEATED FAILURES (>=3)
+alpha | connection reset | 3

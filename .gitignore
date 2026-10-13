@@ -1,0 +1,8 @@
+# Build artifacts
+c/noctiluca
+java/out/
+rust/target/
+swift/.build/
+__pycache__/
+*.py[cod]
+.DS_Store

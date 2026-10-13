@@ -1,0 +1,10 @@
+[package]
+name = "noctiluca"
+version = "0.1.0"
+edition = "2021"
+description = "A deterministic log summary and repeated-failure detector"
+license = "MIT"
+
+[[bin]]
+name = "noctiluca"
+path = "src/main.rs"

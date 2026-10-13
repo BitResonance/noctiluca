@@ -1,0 +1,20 @@
+NOCTILUCA / REPORT
+Events: 12
+Malformed: 1
+
+LEVEL COUNTS
+DEBUG=1
+INFO=3
+WARN=2
+ERROR=5
+FATAL=1
+
+SERVICE COUNTS
+auth=5
+api=4
+gateway=1
+storage=1
+worker=1
+
+REPEATED FAILURES (>=3)
+auth | invalid token signature | 3
