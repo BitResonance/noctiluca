@@ -8,6 +8,18 @@ permissions:
   contents: read
 
 jobs:
+  project-profile:
+    name: Project profile / Python 3.12
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - run: python3 -m py_compile scripts/project_profile.py scripts/test_project_profile.py
+      - run: python3 scripts/project_profile.py --no-color
+
   c:
     name: C / GCC
     runs-on: ubuntu-latest

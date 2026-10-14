@@ -1,30 +1,57 @@
 # NOCTILUCA
 
-```text
-                 .       *       .       *
-                        .-""""-.
-                     .-'  .--.  '-.
-                    /    /    \    \
-                   ;    |  ()  |    ;
-                    \    \    /    /
-                     '-.  '--'  .-'
-                        '-.__.-'
+<p align="center">
+  <img src="docs/assets/noctiluca-system.svg" alt="NOCTILUCA system profile: a geometric signal instrument and a detailed project overview" width="100%">
+</p>
 
-                [ SIGNAL DETECTED ]
-                    NOCTILUCA
-             signals in the static
+<p align="center">
+  <strong>A deterministic log scanner, implemented six ways.</strong><br>
+  One input contract. Six standard-library implementations. Reproducible output.
+</p>
+
+<p align="center">
+  <a href="https://github.com/BitResonance/noctiluca/actions/workflows/ci.yml"><img src="https://github.com/BitResonance/noctiluca/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/languages-6-66d9ef" alt="Six languages">
+  <img src="https://img.shields.io/badge/runtime%20dependencies-zero-a6e22e" alt="Zero third-party runtime dependencies">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-bd93f9" alt="MIT License"></a>
+</p>
+
+NOCTILUCA reads plain-text service logs and produces a compact, stable report. It counts events by severity and service, identifies malformed records, and surfaces repeated `ERROR` or `FATAL` messages. All six implementations follow the same specification and are verified against shared golden fixtures.
+
+## System profile
+
+Want the neofetch-like project summary in your own terminal? Run:
+
+```bash
+python3 scripts/project_profile.py
 ```
 
-A small command-line log scanner, implemented in six languages: C, Rust, Go, Swift, Python, and Java.
+The profile describes the project and detects available language toolchains. It does **not** print your username, hostname, current directory, absolute paths, or environment-variable values. Add `--no-color` for logs and CI.
 
-[![CI](https://github.com/BitResonance/noctiluca/actions/workflows/ci.yml/badge.svg)](https://github.com/BitResonance/noctiluca/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+Example:
+
+```text
+NOCTILUCA // SYSTEM PROFILE
+────────────────────────────────────────────────────────────
+PLATFORM         Linux 6.x · x86_64
+RUNTIME          Python 3.12.x (profile utility)
+PURPOSE          Deterministic service-log summarizer
+LANGUAGES        C · Rust · Go · Swift · Python · Java
+INPUT            UTF-8 line-oriented service logs
+ANALYSIS         Severity counts · service totals · repeated failures
+DEPENDENCIES     Standard library per implementation
+NETWORK          Not used by the analyzer
+TOOLCHAINS       C ✓  Rust ✓  Go ✓  Swift —  Python ✓  Java ✓
+PRIVACY          No personal identity or local paths displayed
+```
 
 ## What it does
 
-NOCTILUCA reads plain-text service logs and prints a compact report. It counts events by severity and service, flags malformed records, and lists repeated `ERROR` or `FATAL` messages.
-
-All six versions follow the same input and output rules. The verifier runs each implementation against the same sample logs and checks that the output matches the expected files exactly.
+- Counts valid events by severity and service.
+- Skips malformed records while reporting their count.
+- Groups repeated error messages by exact service/message pair.
+- Keeps ordering and formatting deterministic for scripts and tests.
+- Provides the same behavior in C, Rust, Go, Swift, Python, and Java.
 
 ## Example
 
@@ -60,17 +87,19 @@ Python is enough to try the project:
 python3 python/noctiluca.py fixtures/sample.log
 ```
 
-To build and check every implementation available on your machine:
+To verify every implementation whose toolchain is installed:
 
 ```bash
 python3 scripts/verify_outputs.py
 ```
 
-The verifier skips languages whose toolchain is not installed. The CI workflow installs each toolchain separately and runs the same checks.
+Run only the terminal profile's unit tests:
 
-## Hidden signal
+```bash
+python3 -m unittest discover -s scripts -p 'test_*.py'
+```
 
-There is one extra command hidden in plain sight. Try `--listen` with any implementation.
+The verifier skips languages whose toolchain is missing. GitHub Actions installs the toolchains in separate jobs and checks the same fixtures. The profile utility itself uses Python's standard library only.
 
 ## Implementations
 
@@ -83,29 +112,30 @@ There is one extra command hidden in plain sight. Try `--listen` with any implem
 | Python | `python3 python/noctiluca.py fixtures/sample.log` |
 | Java | `javac -d java/out java/src/main/java/dev/noctiluca/Main.java && java -cp java/out dev.noctiluca.Main fixtures/sample.log` |
 
-Each version uses its language's standard library. The input format and ordering rules are documented in [`spec/LOG_FORMAT.md`](spec/LOG_FORMAT.md).
+Each implementation uses its language's standard library. The input format and output rules are documented in [`spec/LOG_FORMAT.md`](spec/LOG_FORMAT.md).
 
 ## Project layout
 
 ```text
-c/       C implementation
-rust/    Rust implementation
-go/      Go implementation
-swift/   Swift implementation
-python/  Python implementation
-java/    Java implementation
-fixtures/ shared inputs and expected reports
-scripts/ cross-language verifier
-spec/    log format and output rules
+c/         C implementation
+rust/      Rust implementation
+go/        Go implementation
+swift/     Swift implementation
+python/    Python implementation
+java/      Java implementation
+fixtures/  shared inputs and expected reports
+scripts/   cross-language verifier and terminal profile
+spec/      log format and output contract
+docs/      system-profile artwork
 ```
 
 ## Current limits
 
-Timestamps are checked for the expected UTC shape, but not for real calendar dates. The scanner doesn't correlate events across time windows or infer root causes; repeated failures are counted by exact service/message pair.
+Timestamps are checked for the expected UTC shape, but not for real calendar dates. The scanner does not correlate events across time windows or infer root causes; repeated failures are counted by exact service/message pair.
 
 ## Contributing
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md). Changes to parsing or report output should update the spec and shared fixtures before changing the implementations.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md). Changes to parsing or report output should update the specification and shared fixtures before changing the implementations.
 
 ## License
 

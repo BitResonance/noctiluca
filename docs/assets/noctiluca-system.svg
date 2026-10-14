@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">NOCTILUCA — system profile</title>
+  <desc id="desc">A midnight-blue technical profile card with a geometric signal instrument, system details, six language labels, and a restrained blue, cyan, violet and amber palette.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="0.55" stop-color="#0a1530"/>
+      <stop offset="1" stop-color="#17112e"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#43d9ff"/>
+      <stop offset="0.48" stop-color="#627bff"/>
+      <stop offset="1" stop-color="#c39bff"/>
+    </linearGradient>
+    <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M22 0H0V22" fill="none" stroke="#8dbbff" stroke-opacity=".075" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="430" rx="22" fill="url(#bg)"/>
+  <rect width="1200" height="430" rx="22" fill="url(#grid)"/>
+  <rect x="14" y="14" width="1172" height="402" rx="16" fill="none" stroke="#5aaeff" stroke-opacity=".28"/>
+  <path d="M36 73H1164" stroke="#5aaeff" stroke-opacity=".24"/>
+  <circle cx="48" cy="43" r="5" fill="#ffbd59"/>
+  <circle cx="66" cy="43" r="5" fill="#73e5b4"/>
+  <circle cx="84" cy="43" r="5" fill="#6dbdff"/>
+  <text x="112" y="48" fill="#9db6d8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" letter-spacing="2">LOCAL SYSTEM / PROJECT OVERVIEW</text>
+  <text x="1152" y="48" text-anchor="end" fill="#69dfc0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="1.4">PROFILE READY</text>
+  <!-- Geometric signal lens: an original abstract mark, not ASCII art. -->
+  <g transform="translate(174 231)">
+    <circle r="126" fill="#081629" fill-opacity=".72" stroke="#2f7eb9" stroke-opacity=".7"/>
+    <circle r="108" fill="none" stroke="#6a7dff" stroke-opacity=".55" stroke-dasharray="2 8"/>
+    <circle r="82" fill="none" stroke="#4bceff" stroke-opacity=".6"/>
+    <path d="M-105 2C-63-74-18-74 0 0S63 74 105-2" fill="none" stroke="url(#signal)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+    <path d="M-105-2C-63 74-18 74 0 0S63-74 105 2" fill="none" stroke="#83dfff" stroke-opacity=".82" stroke-width="2.5"/>
+    <path d="M0-111V-73M0 73V111M-111 0H-73M73 0H111" stroke="#8dbbff" stroke-width="1.5" stroke-opacity=".7"/>
+    <path d="M-28-28L0-45L28-28L28 8L0 25L-28 8Z" fill="#102b4c" stroke="#7cdfff" stroke-width="1.5"/>
+    <path d="M-28-28L0-11L28-28M0-11V25" fill="none" stroke="#7cdfff" stroke-opacity=".82"/>
+    <circle cx="0" cy="-111" r="4" fill="#ffd166" filter="url(#glow)"/>
+    <circle cx="111" cy="0" r="4" fill="#6be7c8"/>
+    <circle cx="-111" cy="0" r="4" fill="#6be7c8"/>
+    <circle cx="0" cy="111" r="4" fill="#c39bff"/>
+    <path d="M-136-136h20M-136-136v20M136-136h-20M136-136v20M-136 136h20M-136 136v-20M136 136h-20M136 136v-20" fill="none" stroke="#ffd166" stroke-opacity=".8" stroke-width="2"/>
+  </g>
+  <text x="350" y="131" fill="#f5f7ff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="42" font-weight="800" letter-spacing="5">NOCTILUCA</text>
+  <text x="352" y="159" fill="#94b5e9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" letter-spacing="1.4">DETERMINISTIC LOG ANALYSIS / 6 IMPLEMENTATIONS</text>
+  <path d="M350 181H1147" stroke="#587cae" stroke-opacity=".45"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">
+    <text x="352" y="211" fill="#66d9ef">CORE</text>
+    <text x="502" y="211" fill="#e4ecff">Severity + service aggregation</text>
+    <text x="352" y="242" fill="#66d9ef">INPUT</text>
+    <text x="502" y="242" fill="#e4ecff">UTF-8 line-oriented service logs</text>
+    <text x="352" y="273" fill="#66d9ef">SIGNALS</text>
+    <text x="502" y="273" fill="#e4ecff">Malformed records + repeated failures</text>
+    <text x="352" y="304" fill="#66d9ef">CONTRACT</text>
+    <text x="502" y="304" fill="#e4ecff">Shared fixtures · byte-for-byte output checks</text>
+    <text x="352" y="335" fill="#66d9ef">RUNTIME</text>
+    <text x="502" y="335" fill="#e4ecff">Standard libraries · no third-party runtime deps</text>
+  </g>
+  <path d="M350 357H1147" stroke="#587cae" stroke-opacity=".45"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" letter-spacing="1">
+    <rect x="350" y="375" width="80" height="24" rx="5" fill="#1554a3" fill-opacity=".65" stroke="#4ca7ff"/>
+    <text x="390" y="391" text-anchor="middle" fill="#e7f5ff">C</text>
+    <rect x="440" y="375" width="80" height="24" rx="5" fill="#8b4c13" fill-opacity=".35" stroke="#ffbd59"/>
+    <text x="480" y="391" text-anchor="middle" fill="#ffd38b">RUST</text>
+    <rect x="530" y="375" width="80" height="24" rx="5" fill="#123c53" fill-opacity=".75" stroke="#43d9ff"/>
+    <text x="570" y="391" text-anchor="middle" fill="#8beaff">GO</text>
+    <rect x="620" y="375" width="80" height="24" rx="5" fill="#4b283d" fill-opacity=".6" stroke="#ff8ca8"/>
+    <text x="660" y="391" text-anchor="middle" fill="#ffb0c2">SWIFT</text>
+    <rect x="710" y="375" width="100" height="24" rx="5" fill="#243b29" fill-opacity=".7" stroke="#a6e22e"/>
+    <text x="760" y="391" text-anchor="middle" fill="#d5f58c">PYTHON</text>
+    <rect x="820" y="375" width="80" height="24" rx="5" fill="#3a2861" fill-opacity=".7" stroke="#bd93f9"/>
+    <text x="860" y="391" text-anchor="middle" fill="#d5c1ff">JAVA</text>
+  </g>
+  <text x="1147" y="391" text-anchor="end" fill="#7893b7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11">BUILD / VERIFY / REPEAT</text>
+</svg>
