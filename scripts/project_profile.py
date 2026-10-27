@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Print a neofetch-inspired profile for the NOCTILUCA project.
+"""Print a privacy-conscious neofetch-style profile for NOCTILUCA.
 
 The report intentionally avoids usernames, hostnames, absolute paths, and
-environment-variable values. It reports the current OS/architecture and which
-development toolchains appear to be available on PATH.
+environment-variable values. The ASCII art is a stylized penteract-like
+projection: an artistic 2D sketch of a five-dimensional hypercube.
 """
 from __future__ import annotations
 
@@ -12,6 +12,22 @@ import platform
 import shutil
 import sys
 from collections.abc import Callable, Sequence
+
+ASCII_ART: tuple[str, ...] = (
+    "          +--------------------+",
+    "         /|                   /|",
+    "        / |    +-------------+ |",
+    "       +--+---/|------------|-+-+",
+    "       |  |  +-|------------|-+ |",
+    "       |  | /  |            | | |",
+    "       |  +----+------------+ | |",
+    "       | /     +-------------|-+-+",
+    "       |/      |             | /",
+    "       +-------+-------------+/",
+    "        \\      |            /",
+    "         \\     +-----------+",
+    "          +----------------+",
+)
 
 TOOLCHAINS: tuple[tuple[str, str], ...] = (
     ("C", "cc"),
@@ -33,8 +49,8 @@ def collect_profile(
 ) -> list[tuple[str, str]]:
     """Collect a predictable, privacy-conscious project profile.
 
-    Parameters are injectable so the formatter can be tested without depending
-    on the machine running the tests.
+    Detection is limited to OS/architecture and whether tool commands exist
+    on PATH. Tool paths are never printed.
     """
     find_tool = which or shutil.which
     system_name = system if system is not None else platform.system()
@@ -50,33 +66,45 @@ def collect_profile(
     return [
         ("PLATFORM", f"{system_name} {release_name} · {machine_name}".strip()),
         ("RUNTIME", f"Python {py_version} (profile utility)"),
-        ("PURPOSE", "Deterministic service-log summarizer"),
         ("LANGUAGES", "C · Rust · Go · Swift · Python · Java"),
+        ("PURPOSE", "Deterministic service-log summarizer"),
         ("INPUT", "UTF-8 line-oriented service logs"),
         ("ANALYSIS", "Severity counts · service totals · repeated failures"),
         ("DEPENDENCIES", "Standard library per implementation"),
-        ("NETWORK", "Not used by the analyzer"),
         ("TOOLCHAINS", "  ".join(available)),
+        ("NETWORK", "Not used by the analyzer"),
         ("PRIVACY", "No username, hostname, or local paths displayed"),
     ]
 
 
 def format_profile(rows: Sequence[tuple[str, str]], *, color: bool = False) -> str:
-    """Format rows as a compact terminal profile."""
+    """Render an ASCII hypercube alongside project/system details."""
     def paint(value: str, code: str) -> str:
         return f"\033[{code}m{value}\033[0m" if color else value
 
     label_width = max(len(label) for label, _ in rows)
-    lines = [
+    info_lines = [
         paint("NOCTILUCA // SYSTEM PROFILE", "1;96"),
-        paint("─" * 66, "90"),
+        paint("STYLIZED PENTERACT / 5D PROJECTION", "95"),
+        paint("-" * 42, "90"),
     ]
-    for label, value in rows:
-        lines.append(f"{paint(label.ljust(label_width), '96')}  {value}")
-    lines.extend([
-        paint("─" * 66, "90"),
-        paint("LOCAL TOOL / SHARED CONTRACT / REPRODUCIBLE OUTPUT", "94"),
+    info_lines.extend(
+        f"{paint(label.ljust(label_width), '96')}  {value}"
+        for label, value in rows
+    )
+    info_lines.extend([
+        paint("-" * 42, "90"),
+        paint("LOCAL ANALYZER / DETERMINISTIC OUTPUT", "94"),
     ])
+
+    art_width = max(len(line) for line in ASCII_ART)
+    height = max(len(ASCII_ART), len(info_lines))
+    lines: list[str] = []
+    for index in range(height):
+        art = ASCII_ART[index] if index < len(ASCII_ART) else ""
+        left = paint(art.ljust(art_width), "96")
+        right = info_lines[index] if index < len(info_lines) else ""
+        lines.append(f"{left}  {paint('|', '90')}  {right}")
     return "\n".join(lines) + "\n"
 
 

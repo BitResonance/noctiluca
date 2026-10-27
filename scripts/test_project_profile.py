@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import unittest
 
-from project_profile import collect_profile, format_profile
+from project_profile import ASCII_ART, collect_profile, format_profile
 
 
 class ProjectProfileTests(unittest.TestCase):
@@ -20,6 +20,16 @@ class ProjectProfileTests(unittest.TestCase):
         output = format_profile(self.rows)
         self.assertIn("NOCTILUCA // SYSTEM PROFILE", output)
         self.assertIn("C · Rust · Go · Swift · Python · Java", output)
+        self.assertIn("STYLIZED PENTERACT / 5D PROJECTION", output)
+
+    def test_hypercube_art_is_ascii_and_has_multiple_dimensions(self) -> None:
+        self.assertGreaterEqual(len(ASCII_ART), 10)
+        self.assertTrue(all(line.isascii() for line in ASCII_ART))
+        art = "\n".join(ASCII_ART)
+        self.assertIn("+", art)
+        self.assertIn("/", art)
+        self.assertIn("\\", art)
+        self.assertIn("|", art)
 
     def test_environment_fields_are_injected_for_deterministic_tests(self) -> None:
         fields = dict(self.rows)
